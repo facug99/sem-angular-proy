@@ -6,6 +6,18 @@ import { Article } from "./Article";
   styleUrl: './articles-list.component.scss'
 })
 export class ArticlesListComponent {
+  downgradeMethod(article: Article): void {
+    if (article.count > 0) {
+      article.count--;
+    }
+
+  }
+  upgradeMethod(article: Article): void {
+    if (article.count < article.stock) {
+      article.count++;
+    }
+  }
+  //Fake Data
   articles: Article[] = [
     {
       name: 'ENA Whey Protein True Made Cookies and Cream',
@@ -13,6 +25,7 @@ export class ArticlesListComponent {
       price: 35400,
       stock: 7,
       image: 'assets/img/protein.webp',
+      count: 0,
     },
     {
       name: 'STAR NUTRITION Creatina',
@@ -20,6 +33,7 @@ export class ArticlesListComponent {
       price: 32500,
       stock: 9,
       image: 'assets/img/creatina.webp',
+      count: 0,
     },
     {
       name: 'NF NUTRITION Focus PreWork',
@@ -27,6 +41,7 @@ export class ArticlesListComponent {
       price: 24000,
       stock: 0,
       image: 'assets/img/preentreno.webp',
+      count: 0,
     },
   ]
 }

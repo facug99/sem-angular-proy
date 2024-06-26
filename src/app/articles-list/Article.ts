@@ -4,4 +4,5 @@ export interface Article {
     price: number;
     stock: number;
     image: string;
+    count: number;
 }
