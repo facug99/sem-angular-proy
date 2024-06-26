@@ -1,0 +1,27 @@
+<h3 class="bg-success p-2 text-white bg-gradient">Lista de Articulos</h3>
+<table class="tabla">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nombre Articulo</th>
+            <th>Tamaño</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (article of articles; track article.name) {
+        <tr [ngClass]="{'clase': article.price}">
+            <td><img [src]="article.image" [alt]="article.name" class="resized-image"></td>
+            <td>{{article.name}}</td>
+            <td>{{article.size}}</td>
+            <td>{{article.price | currency}} </td>
+            @if (article.stock==0){
+            <td>Sin Stock</td>
+            }@else {
+            <td>{{article.stock}}</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
