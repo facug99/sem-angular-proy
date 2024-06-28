@@ -1,12 +1,15 @@
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 5px;
 }
 
 th,
 td {
+
     border-bottom: 1px solid black;
     padding: 8px;
+
 }
 
 th {
@@ -20,20 +23,7 @@ th {
     /* Ajusta la altura a 150px */
 }
 
-.inputCompra {
-    width: 82px;
-    padding: 5px;
-    font-size: 14px;
-    margin-bottom: 2px;
-
-}
-
-.btn {
-    width: 40px;
-    height: 40px;
-    margin: 1px;
-}
-
-.contenedorBTN {
-    display: flex;
+.sinStock {
+    border: 2px solid red;
+    background-color: lightcoral;
 }

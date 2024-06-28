@@ -6,17 +6,7 @@ import { Article } from "./Article";
   styleUrl: './articles-list.component.scss'
 })
 export class ArticlesListComponent {
-  downgradeMethod(article: Article): void {
-    if (article.count > 0) {
-      article.count--;
-    }
 
-  }
-  upgradeMethod(article: Article): void {
-    if (article.count < article.stock) {
-      article.count++;
-    }
-  }
   //Fake Data
   articles: Article[] = [
     {

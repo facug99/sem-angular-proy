@@ -6,13 +6,13 @@
             <th>Nombre Articulo</th>
             <th>Tamaño</th>
             <th>Precio</th>
-            <th>Cantidad</th>
             <th>Compra</th>
+
         </tr>
     </thead>
     <tbody>
         @for (article of articles; track article.name) {
-        <tr [ngClass]="{'clase': article.price}">
+        <tr [ngClass]="{'sinStock': !article.stock}">
             <td><img [src]="article.image" [alt]="article.name" class="resized-image"></td>
             <td>{{article.name}}</td>
             <td>{{article.size}}</td>
@@ -20,15 +20,8 @@
             @if (article.stock==0){
             <td>Sin Stock</td>
             }@else {
-            <td>{{article.stock}}</td>
+            <td><app-input-integer [(quantity)]="article.count" [max]="article.stock"></app-input-integer></td>
             }
-            <td>
-                <input type="text" class="inputCompra" [(ngModel)]="article.count">
-                <div class="contenedorBTN">
-                    <button size="10" class="btn btn-success btn-sm" (click)="upgradeMethod(article)">+</button>
-                    <button size="10" class="btn btn-danger btn-sm" (click)="downgradeMethod(article)">-</button>
-                </div>
-            </td>
         </tr>
         }
     </tbody>
