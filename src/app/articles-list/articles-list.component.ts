@@ -13,7 +13,7 @@ export class ArticlesListComponent {
       name: 'ENA Whey Protein True Made Cookies and Cream',
       size: '1000 gr',
       price: 35400,
-      stock: 7,
+      stock: 78,
       image: 'assets/img/protein.webp',
       count: 0,
     },

@@ -17,8 +17,12 @@ export class InputIntegerComponent {
   quantityChange: EventEmitter<number> = new EventEmitter<number>();
 
   changeInput(event: { key: string; preventDefault: () => void; }): void {
-    // Permitir solo números
-    if (!/[0-9]/.test(event.key)) {
+    const keysExtra = ['Backspace']; // Teclas adicionales permitidas
+
+    const valorInput = parseInt(this.quantity.toString() + event.key, 10); // Simula el nuevo valor del campo de entrada concatenando el primer numero seleccionado con el siguiente.
+
+    // Permitir solo números y dentro del stock maximo
+    if ((!/[0-9]/.test(event.key) && !keysExtra.includes(event.key)) || (valorInput > this.max)) {
       event.preventDefault();
       this.quantityChange.emit(this.quantity);
     }
