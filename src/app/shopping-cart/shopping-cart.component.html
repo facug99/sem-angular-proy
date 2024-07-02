@@ -1,1 +1,5 @@
-<p>shopping-cart works!</p>
+<ul>
+    @for (article of (shoppingList$ |async); track article.name) {
+    <li>{{article.name}}: {{article.quantity}}</li>
+    }
+</ul>

@@ -20,7 +20,10 @@
             @if (article.stock==0){
             <td>Sin Stock</td>
             }@else {
-            <td><app-input-integer [(quantity)]="article.count" [max]="article.stock"></app-input-integer></td>
+            <td><app-input-integer [(quantity)]="article.quantity" [max]="article.stock"></app-input-integer>
+                <button class="btn btn-primary btn-sm" (click)="addToCart(article)">Añadir al carrito</button>
+            </td>
+
             }
         </tr>
         }
