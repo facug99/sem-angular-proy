@@ -9,7 +9,7 @@ import { ShopComponent } from './shop/shop.component';
 import { AboutComponent } from './about/about.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { InputIntegerComponent } from './input-integer/input-integer.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
