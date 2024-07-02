@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 
 
 @Component({
@@ -16,13 +16,9 @@ export class InputIntegerComponent {
   @Output()
   quantityChange: EventEmitter<number> = new EventEmitter<number>();
 
-  changeInput(event: any): void {
 
-    if (event.key != "1") {
-      event.preventDefault();
-      console.log(event.key);
-      this.quantityChange.emit(this.quantity)
-    }
+
+  changeInput(event: KeyboardEvent): void {
 
 
   }

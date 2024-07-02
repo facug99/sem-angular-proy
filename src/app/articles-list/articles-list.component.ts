@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Article } from "./Article";
 import { ArticleCartService } from '../article-cart.service';
+import { ArticleDataService } from '../article-data.service';
 @Component({
   selector: 'app-articles-list',
   templateUrl: './articles-list.component.html',
@@ -8,7 +9,10 @@ import { ArticleCartService } from '../article-cart.service';
 })
 export class ArticlesListComponent {
 
-  constructor(private shoppingCart: ArticleCartService) {
+  constructor(
+    private shoppingCart: ArticleCartService,
+    private articleDataService: ArticleDataService
+  ) {
 
   }
   addToCart(article: Article): void {
