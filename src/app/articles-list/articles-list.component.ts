@@ -15,6 +15,10 @@ export class ArticlesListComponent {
   ) {
 
   }
+  ngOnInit(): void {
+    this.articleDataService.getAll().subscribe(articles => this.articles = articles);
+
+  }
   addToCart(article: Article): void {
     this.shoppingCart.addToShoppingList(article);
     article.stock -= article.quantity;
@@ -22,30 +26,5 @@ export class ArticlesListComponent {
 
   }
   //Fake Data
-  articles: Article[] = [
-    {
-      name: 'ENA Whey Protein True Made Cookies and Cream',
-      size: '1000 gr',
-      price: 35400,
-      stock: 30,
-      image: 'assets/img/protein.webp',
-      quantity: 0,
-    },
-    {
-      name: 'STAR NUTRITION Creatina',
-      size: '300 gr',
-      price: 32500,
-      stock: 10,
-      image: 'assets/img/creatina.webp',
-      quantity: 0,
-    },
-    {
-      name: 'NF NUTRITION Focus PreWork',
-      size: '240 gr',
-      price: 24000,
-      stock: 5,
-      image: 'assets/img/preentreno.webp',
-      quantity: 0,
-    },
-  ]
+  articles: Article[] = [];
 }
