@@ -25,5 +25,9 @@ export class ArticleCartService {
     this.shoppingList.next(this._shoppingList);
   }
 
+  removeShoppingList(article: Article) {
+    this._shoppingList.pop();
+    article.stock += article.quantity;
+  }
 
 }

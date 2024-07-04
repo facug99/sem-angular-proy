@@ -9,10 +9,16 @@ import { Observable } from 'rxjs';
   styleUrl: './shopping-cart.component.scss'
 })
 export class ShoppingCartComponent {
+
+
   shoppingList$: Observable<Article[]>;
 
   constructor(private shoppingCart: ArticleCartService) {
     this.shoppingList$ = shoppingCart.shoppingList.asObservable();
+  }
+  removeMethod(article: Article) {
+    this.shoppingCart.removeShoppingList(article);
+
   }
 
 

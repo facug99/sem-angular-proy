@@ -1,5 +1,17 @@
-<ul>
-    @for (article of (shoppingList$ |async); track article.name) {
-    <li>{{article.name}}: {{article.quantity}}</li>
-    }
-</ul>
+<h3 class="bg-primary p-2 text-white bg-gradient">Carrito</h3>
+<div class="container my-5">
+
+    <ul class="list-group">
+        @for (article of (shoppingList$ |async); track article.name) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <h5>{{article.name}}</h5>
+                <p class="mb-0">{{article.quantity}}</p>
+            </div>
+            <span class="badge badge-primary badge-pill">{{article.quantity * article.price | currency}}</span>
+            <button class="btn btn-danger btn-sm" (click)="removeMethod(article)">Remove</button>
+        </li>
+        }
+    </ul>
+
+</div>

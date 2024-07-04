@@ -8,13 +8,14 @@ import { ArticleDataService } from '../article-data.service';
   styleUrl: './articles-list.component.scss'
 })
 export class ArticlesListComponent {
-
+  articles: Article[] = [];
   constructor(
     private shoppingCart: ArticleCartService,
     private articleDataService: ArticleDataService
   ) {
 
   }
+
   ngOnInit(): void {
     this.articleDataService.getAll().subscribe(articles => this.articles = articles);
 
@@ -25,6 +26,7 @@ export class ArticlesListComponent {
     article.quantity = 0;
 
   }
-  //Fake Data
-  articles: Article[] = [];
+
+
+
 }
