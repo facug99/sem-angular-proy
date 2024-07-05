@@ -5,4 +5,5 @@ export interface Article {
     stock: number;
     image: string;
     quantity: number;
+
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Article } from './articles-list/Article';
 import { BehaviorSubject } from 'rxjs';
+import { ArticlesListComponent } from './articles-list/articles-list.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +10,17 @@ import { BehaviorSubject } from 'rxjs';
 export class ArticleCartService {
 
   private _shoppingList: Article[] = [];
-
   shoppingList: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
 
-  constructor() { }
 
+  constructor() {
+
+  }
   addToShoppingList(article: Article) {
     let item = this._shoppingList.find((v1) => v1.name == article.name);
     if (!item) {
-      this._shoppingList.push({ ...article })
+      this._shoppingList.push({ ...article });
     } else {
       item.quantity += article.quantity;
     }
@@ -25,9 +28,14 @@ export class ArticleCartService {
     this.shoppingList.next(this._shoppingList);
   }
 
-  removeShoppingList(article: Article) {
-    this._shoppingList.pop();
-    article.stock += article.quantity;
+  removeArticle(article: Article): void {
+    let index = this._shoppingList.findIndex((v1) => v1.name == article.name);
+    this._shoppingList.splice(index);
+    this.shoppingList.next(this._shoppingList);
+
   }
 
 }
+
+
+

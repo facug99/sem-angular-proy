@@ -16,9 +16,8 @@ export class ShoppingCartComponent {
   constructor(private shoppingCart: ArticleCartService) {
     this.shoppingList$ = shoppingCart.shoppingList.asObservable();
   }
-  removeMethod(article: Article) {
-    this.shoppingCart.removeShoppingList(article);
-
+  removeMethod(article: Article): void {
+    this.shoppingCart.removeArticle(article);
   }
 
 
