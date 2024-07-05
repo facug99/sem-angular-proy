@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Article } from "./Article";
 import { ArticleCartService } from '../article-cart.service';
 import { ArticleDataService } from '../article-data.service';
-import { find } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-articles-list',
@@ -10,6 +10,7 @@ import { find } from 'rxjs';
   styleUrl: './articles-list.component.scss'
 })
 export class ArticlesListComponent {
+  private miSuscripcion: Subscription;
 
   articles: Article[] = []
   constructor(
@@ -19,8 +20,11 @@ export class ArticlesListComponent {
   }
 
   ngOnInit(): void {
-    this.articleDataService.getAll().subscribe(articles => this.articles = articles);
+    this.miSuscripcion = this.articleDataService.getAll().subscribe(articles => this.articles = articles);
 
+  }
+  ngOnDestroy(): void {
+    this.miSuscripcion.unsubscribe();
   }
 
 
