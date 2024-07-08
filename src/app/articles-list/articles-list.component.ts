@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Article } from "./Article";
 import { ArticleCartService } from '../article-cart.service';
 import { ArticleDataService } from '../article-data.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-articles-list',
@@ -11,19 +11,20 @@ import { Subscription } from 'rxjs';
 })
 export class ArticlesListComponent {
   private suscripcionDeDatos: Subscription;
-
   articles: Article[] = []
   constructor(
     private shoppingCart: ArticleCartService,
     private articleDataService: ArticleDataService
   ) {
+
   }
 
   ngOnInit(): void {
     this.suscripcionDeDatos = this.articleDataService.getAll().subscribe(articles => this.articles = articles);
-    this.shoppingCart.shoppingList.subscribe();
 
   }
+
+
   ngOnDestroy(): void {
     this.suscripcionDeDatos.unsubscribe();
   }
@@ -32,17 +33,10 @@ export class ArticlesListComponent {
       this.shoppingCart.addToShoppingList(article);
       article.stock -= article.quantity;
       article.quantity = 0;
+      localStorage.setItem(article.name, article.stock.toString());
+    }
+  }
 
-    }
-  }
-  updateStock(article: Article) {
-    let item = this.articles.find((v1) => v1.name == article.name)
-    if (item) {
-      if (article.stock != item.stock) {
-        item.stock = article.stock;
-      }
-    }
-  }
 
 
 
