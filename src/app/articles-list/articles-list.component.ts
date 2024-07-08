@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './articles-list.component.scss'
 })
 export class ArticlesListComponent {
-  private miSuscripcion: Subscription;
+  private suscripcionDeDatos: Subscription;
 
   articles: Article[] = []
   constructor(
@@ -20,23 +20,27 @@ export class ArticlesListComponent {
   }
 
   ngOnInit(): void {
-    this.miSuscripcion = this.articleDataService.getAll().subscribe(articles => this.articles = articles);
+    this.suscripcionDeDatos = this.articleDataService.getAll().subscribe(articles => this.articles = articles);
+    this.shoppingCart.shoppingList.subscribe();
 
   }
   ngOnDestroy(): void {
-    this.miSuscripcion.unsubscribe();
+    this.suscripcionDeDatos.unsubscribe();
   }
-
-
-
-
   addToCart(article: Article): void {
-    if (article.quantity > 0) {
+    if (article.quantity > 0 && article.quantity <= article.stock) {
       this.shoppingCart.addToShoppingList(article);
       article.stock -= article.quantity;
       article.quantity = 0;
 
-
+    }
+  }
+  updateStock(article: Article) {
+    let item = this.articles.find((v1) => v1.name == article.name)
+    if (item) {
+      if (article.stock != item.stock) {
+        item.stock = article.stock;
+      }
     }
   }
 

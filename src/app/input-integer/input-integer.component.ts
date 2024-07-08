@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
@@ -16,12 +16,27 @@ export class InputIntegerComponent {
   @Output()
   quantityChange: EventEmitter<number> = new EventEmitter<number>();
 
+  quantityInput: string = '';
 
+  changeInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
 
-  changeInput(event: KeyboardEvent): void {
+    // Validar que solo contenga números
+    const numericValue = value.replace(/[^0-9]/g, '');
 
+    // Actualizar el valor del input
+    this.quantityInput = numericValue;
+    input.value = numericValue;
 
+    // Emitir el valor numérico
+    if (numericValue) {
+      this.quantityChange.emit(parseInt(numericValue, 10));
+    } else {
+      this.quantityChange.emit(0);
+    }
   }
+
 
   downMethod(): void {
     if (this.quantity > 0) {
@@ -37,3 +52,5 @@ export class InputIntegerComponent {
     }
   }
 }
+
+

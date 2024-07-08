@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from './articles-list/Article';
 import { BehaviorSubject } from 'rxjs';
-import { ArticlesListComponent } from './articles-list/articles-list.component';
+
 
 
 @Injectable({
@@ -29,8 +29,9 @@ export class ArticleCartService {
   }
 
   removeArticle(article: Article): void {
+
     let index = this._shoppingList.findIndex((v1) => v1.name == article.name);
-    this._shoppingList.splice(index);
+    this._shoppingList.splice(index, 1);
     this.shoppingList.next(this._shoppingList);
 
   }

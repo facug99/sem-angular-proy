@@ -1,4 +1,4 @@
-<input type="text" class="inputCompra" [(ngModel)]="quantity" (keydown)="changeInput($event)">
+<input type="text" class="inputCompra" [(ngModel)]="quantity" (input)="changeInput($event)" [value]="quantityInput">
 <div class="contenedorBTN">
     <button size="10" class="btn btn-success btn-sm" (click)="upMethod()">+</button>
     <button size="10" class="btn btn-danger btn-sm" (click)="downMethod()">-</button>
